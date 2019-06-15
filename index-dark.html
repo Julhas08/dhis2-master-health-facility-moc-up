@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <title>Master Health Facility App</title>
+    <meta property="og:description" content="Master Health Facility List App, MHFL App, DHIS2 Facility List App"/>
+    <!-- Latest compiled and minified CSS -->
+  	<link rel="stylesheet" href="public/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="public/css/style-dark.css">
+  	<script src="public/js/jquery.min.js"></script>
+    <script src="public/js/bootstrap.min.js"></script> 
+    <script src="public/js/custom-dark.js"></script> 
+
+    <link rel="stylesheet" href="public/fontawesome/css/font-awesome.min.css">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <body>
+
+  <div class="container-fulid">
+    <div> 
+      <div class="main-area">
+        <div class="col-md-12 col-xs-12 col-lg-12 right-sidebar  padding-left-right-zero"> 
+          <div class="panel panel-white">   
+              <div class="panel-heading clearfix">
+              	<div class="top-header">
+              		<div class="top-header-middle-menu">
+              			<span class="mhfl-app-logo"> MHFL APP </span> 
+                        <ul class="top-menubar">
+                            <li> Reports </li> 
+                            <li> Embeded   </li> 
+                            <li> Settings  </li> 
+                            <li> User Name </li> 
+                        </ul>
+                        <span class="dhis2-home-login"><i class="fa fa-info-circle" style="margin-right: 20px;"> </i> | Home</span>
+              		</div>	
+              	</div>
+              	<div class="main-header">
+                    <div class="left-bar">
+                  		<div class="main-header-middle-menu">
+                            <span class="header-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Map  </span>
+                            <span class="header-icon"><i class="fa fa-bar-chart" aria-hidden="true"></i> Column </span>
+                            <span class="header-icon"><i class="fa fa-bar-chart" aria-hidden="true"></i> Bar</span>
+                            <span class="header-icon"><i class="fa fa-line-chart" aria-hidden="true"></i> Line</span>
+                            <span class="header-icon"><i class="fa fa-pie-chart" aria-hidden="true"></i> Pie</span>
+                            <span class="header-icon"><i class="fa fa-table" aria-hidden="true"></i> Table</span>
+                            <span class="header-icon"><a href="index.html"><i class="fa fa-edit" aria-hidden="true"></i> Sky-Theme</a></span>
+                  		</div>	
+                    </div>
+                    <div class="center-bar">
+                        <div class="dropdown">
+                            <div class="input-field">
+                                  <div class="input-placeholder">
+                                    <input class="form-control" onclick="myFunction()" type="text" name="searchroleName" id="myInput" onkeyup="filterFunction()" placeholder="Search ...... "/>
+                                  </div>
+                            </div>
+                            <div class="search-field"> 
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6 col-lg-6 left-box">
+                                        <div class="from-group">
+                                            <select class="form-control form-control-lg">
+                                              <option>Select Category</option>
+                                              <option>All</option>
+                                              <option>Facility Basic Identifier </option>
+                                              <option>Administrative Area </option>
+                                              <option>Contact Details </option>
+                                              <option>Service Domain </option>
+                                              <option>Resource Domain </option>
+                                            </select>
+                                        </div>
+                                        <div class="from-group dorpdown-seperation">
+                                            <select class="form-control form-control-lg">
+                                              <option>Select Attributes</option>
+                                              <option>All</option>
+                                              <option>Facility Name</option>
+                                              <option>Short Name</option>
+                                              <option>Code</option>
+                                              <option>Description</option>
+                                            </select>
+                                        </div>
+                                        <hr>
+                                        <form>
+                                        <div class="from-group">
+                                            <label class="radio-inline"><input type="radio" value=""> Historical Background</label>
+                                            <label class="radio-inline"><input type="radio" value=""> Clients Feedback</label>
+                                           
+                                        </div>
+                                        <form>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6 col-lg-6 ">
+                                        <div class="from-group">
+                                            <select class="form-control form-control-lg">
+                                              <option>Catchment Area</option>
+                                              <option>Dhaka</option>
+                                              <option>Rajshahi</option>
+                                              <option>Naogaon</option>
+                                            </select>
+                                        </div>
+                                        <div class="from-group dorpdown-seperation">
+                                            <select class="form-control form-control-lg">
+                                              <option>Avaiable Services</option>
+                                              <option>Basic and advanced childbirth</option>
+                                              <option>Immunization</option>
+                                              <option>Child health</option>
+                                              <option>Adolescents</option>
+                                              <option>HIV / AIDS care</option>
+                                              <option>ARV therapy</option>
+                                              <option>PMTCT</option>
+                                            </select>
+                                        </div>
+                                        <hr>
+                                        <form>
+                                        <div class="from-group">
+                                            <label class="checkbox-inline"><input type="checkbox" value=""> Nearest Service Area</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value=""> Doctors per population ratio</label>
+                                        </div>
+                                        <form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-bar">
+                        <button class="button-text btn  button-danger download-button"> <i class="fa fa-download"></i> Download</button>
+                    </div>
+              	</div>
+                 
+              </div>
+              
+                <div class="panel-body">
+                    <div class="panel-bodys">
+                        <div class="row">
+                            <div class="col-md-8 col-xs-8 col-lg-8 left-box"> 
+                              <div id="map"></div>
+                                <script>
+                                  function initMap() {
+                                    // Styles a map in night mode.
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                      center: {lat: 40.674, lng: -73.945},
+                                      zoom: 12,
+                                      styles: [
+                                        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                                        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                                        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                                        {
+                                          featureType: 'administrative.locality',
+                                          elementType: 'labels.text.fill',
+                                          stylers: [{color: '#d59563'}]
+                                        },
+                                        {
+                                          featureType: 'poi',
+                                          elementType: 'labels.text.fill',
+                                          stylers: [{color: '#d59563'}]
+                                        },
+                                        {
+                                          featureType: 'poi.park',
+                                          elementType: 'geometry',
+                                          stylers: [{color: '#263c3f'}]
+                                        },
+                                        {
+                                          featureType: 'poi.park',
+                                          elementType: 'labels.text.fill',
+                                          stylers: [{color: '#6b9a76'}]
+                                        },
+                                        {
+                                          featureType: 'road',
+                                          elementType: 'geometry',
+                                          stylers: [{color: '#38414e'}]
+                                        },
+                                        {
+                                          featureType: 'road',
+                                          elementType: 'geometry.stroke',
+                                          stylers: [{color: '#212a37'}]
+                                        },
+                                        {
+                                          featureType: 'road',
+                                          elementType: 'labels.text.fill',
+                                          stylers: [{color: '#9ca5b3'}]
+                                        },
+                                        {
+                                          featureType: 'road.highway',
+                                          elementType: 'geometry',
+                                          stylers: [{color: '#746855'}]
+                                        },
+                                        {
+                                          featureType: 'road.highway',
+                                          elementType: 'geometry.stroke',
+                                          stylers: [{color: '#1f2835'}]
+                                        },
+                                        {
+                                          featureType: 'road.highway',
+                                          elementType: 'labels.text.fill',
+                                          stylers: [{color: '#f3d19c'}]
+                                        },
+                                        {
+                                          featureType: 'transit',
+                                          elementType: 'geometry',
+                                          stylers: [{color: '#2f3948'}]
+                                        },
+                                        {
+                                          featureType: 'transit.station',
+                                          elementType: 'labels.text.fill',
+                                          stylers: [{color: '#d59563'}]
+                                        },
+                                        {
+                                          featureType: 'water',
+                                          elementType: 'geometry',
+                                          stylers: [{color: '#17263c'}]
+                                        },
+                                        {
+                                          featureType: 'water',
+                                          elementType: 'labels.text.fill',
+                                          stylers: [{color: '#515c6d'}]
+                                        },
+                                        {
+                                          featureType: 'water',
+                                          elementType: 'labels.text.stroke',
+                                          stylers: [{color: '#17263c'}]
+                                        }
+                                      ]
+                                    });
+                                  }
+                                </script>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8UOADXQH40WXfIdso7BqDVfbLYxFAw2k&callback=initMap"
+                                async defer></script>
+
+                                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                                      </button>
+
+                                      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#">Share <span class="sr-only">(current)</span></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Get Links</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">User Manual</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Developer Guide</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">App Info</a>
+                                            </li>
+                                        </ul>
+                                       
+                                      </div>
+                                    </nav>
+                            </div>
+                            <button role="button" class="btn btn-danger hide-me-leftside-bar" data-toggle="collapse" data-target="#hide-me-leftside-bar">
+                               <i class="fa fa-caret-left left" aria-hidden="true"></i> 
+                            </button>
+                            <div class="col-md-3 col-xs-12 col-lg-3 right-sidebar">
+                                <div class="col-md-6">                                      
+                                      <div id="hide-me-leftside-bar" class="collapse show width">                                            
+                                            <div class="widget">                                    
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse">Facility Basic Identifier <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body table-text-color" id="collapse" class="collapse in">
+                                                     <!-- Modal -->
+                                                      <div class="modal fade" id="facilityBasicIdentifier" role="dialog">
+                                                        <div class="modal-dialog modal-lg modal-text-color">
+                                                        
+                                                          <!-- Modal content-->
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                              <h4 class="modal-title">Facility Basic Identifier Detail</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                             <table class="table table-striped">
+                                                              <thead>
+                                                                <tr>
+                                                                  <th>Facility Name</th>
+                                                                  <th>Barguna District Hospital, Barguna</th>
+                                                                </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td>Short Name</td>
+                                                                  <td>Barguna District Hospital</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Code</td>
+                                                                  <td>100200</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Description</td>
+                                                                  <td>Barguna District Hospital is a distric thospital located at Barguna</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Opening Date</td>
+                                                                  <td>2018-01-01</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Closed Date</td>
+                                                                  <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Comments</td>
+                                                                  <td></td>
+                                                                </tr>
+                                                              </tbody>
+                                                          </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                          </div>
+                                                          
+                                                        </div>
+                                                      </div>
+                                                      <table class="table table-striped ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>Facility Name</th>
+                                                              <th>Barguna District Hospital</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Short Name</td>
+                                                              <td>Barguna District Hospital</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Code</td>
+                                                              <td>100200</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td colspan="2" style="text-align: center;">
+                                                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#facilityBasicIdentifier">More Detail</button></td>
+                                                            </tr>                                                            
+                                                          </tbody>
+                                                      </table>
+
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse1">Administrative Area <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse1" class="collapse in">
+                                                    <!-- Modal -->
+                                                      <div class="modal fade" id="administrativeFacility" role="dialog">
+                                                        <div class="modal-dialog modal-lg modal-text-color">
+                                                        
+                                                          <!-- Modal content-->
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                              <h4 class="modal-title">Facility Administrative Detail</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                             <table class="table table-striped">
+                                                              <thead>
+                                                                <tr>
+                                                                  <th>Ministry Name</th>
+                                                                  <th>Ministry of Health</th>
+                                                                </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td>Ministry code</td>
+                                                                  <td>10</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Division Name (Level-2)</td>
+                                                                  <td>Dhaka</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Division Code</td>
+                                                                  <td>04</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>District Name (Level-3)</td>
+                                                                  <td>Barisal</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>District Code</td>
+                                                                  <td>18</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Sub-district (Level-4)</td>
+                                                                  <td>Amtoli Upazila</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                  <td>Sub-district code</td>
+                                                                  <td>1810</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Paurasava Name (Level-5)</td>
+                                                                  <td>Savar</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Paurasava Code</td>
+                                                                  <td>181020</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Union Name (Level-6)</td>
+                                                                  <td>Rajbari Union</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Union Code</td>
+                                                                  <td>17</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                  <td>Facilitytype Name</td>
+                                                                  <td>Government</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Facilitytype Code</td>
+                                                                  <td>8</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Facility Agency Name</td>
+                                                                  <td>Directly under MOHFW</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                  <td>Facility Agency Code</td>
+                                                                  <td>11810</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Facility level Name</td>
+                                                                  <td>Not applicable</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Facility level Code</td>
+                                                                  <td>22</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Facility Ownership Name</td>
+                                                                  <td>Within city corporation area</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Facility Ownership Code</td>
+                                                                  <td>171</td>
+                                                                </tr>
+                                                              </tbody>
+                                                          </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                          </div>
+                                                          
+                                                        </div>
+                                                      </div>
+                                                      <table class="table table-striped table-text-color">
+                                                         <thead>
+                                                            <tr>
+                                                              <th>Ministry Name</th>
+                                                              <th>Ministry of Health</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Ministry code</td>
+                                                              <td>10</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Division Name (Level-2)</td>
+                                                              <td>Dhaka</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td colspan="2" style="text-align: center;">
+                                                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#administrativeFacility">More Detail</button></td>
+                                                            </tr>                                                            
+                                                          </tbody>
+                                                      </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse2">Contact Details <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse2" class="collapse in">
+                                                    <!-- Modal -->
+                                                      <div class="modal fade" id="facilityContacts" role="dialog">
+                                                        <div class="modal-dialog modal-lg modal-text-color">
+                                                        
+                                                          <!-- Modal content-->
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                              <h4 class="modal-title">Facility Contact Detail</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                             <table class="table table-striped modal-text-color">
+                                                              <thead>
+                                                                <tr>
+                                                                  <th>Mailing Address</th>
+                                                                  <th>Barguna District Hospital</th>
+                                                                </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td>Photo</td>
+                                                                  <td><img src="http://facilityregistry.dghs.gov.bd/img/slideshow/1_Medical_College_Hospital_600x400.jpg" height="300" width="400" /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Latitude</td>
+                                                                  <td>23.810332</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Longitude</td>
+                                                                  <td>90.412518</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Mobile-1</td>
+                                                                  <td>+8801989442856</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Mobile-2</td>
+                                                                  <td>+8801989442856</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Email-1</td>
+                                                                  <td>info@facility.com</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Email-2</td>
+                                                                  <td>info@facility.com</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Landphone-1</td>
+                                                                  <td>+198664422</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Landphone-2</td>
+                                                                  <td>+90112233</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Fax-1</td>
+                                                                  <td>34568798</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Fax-2</td>
+                                                                  <td>234567567</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Website Link</td>
+                                                                  <td>www.website.com</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                  <td>Facebook Link</td>
+                                                                  <td>www.facebook.com</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Twitter</td>
+                                                                  <td>www.twitter.com</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Google Plus</td>
+                                                                  <td>www.googeplus.com</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>LinkedIn</td>
+                                                                  <td>www.linkedin.com</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Youtube</td>
+                                                                  <td>www.youtube.com</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Service Provider Name</td>
+                                                                  <td>Ms. Fardina</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Provider Primary Contact Number</td>
+                                                                  <td>+8801989442856</td>
+                                                                </tr>
+                                                                 <tr>
+                                                                  <td>Provider Secodary Contact Number</td>
+                                                                  <td>+8801989442856</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Provider Email</td>
+                                                                  <td>provider@gmail.com</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Provider Current Address</td>
+                                                                  <td>H-11, R-18, Khilkhet, Dhaka</td>
+                                                                </tr>
+                                                              </tbody>
+                                                          </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                          </div>
+                                                          
+                                                        </div>
+                                                      </div>
+                                                      <table class="table table-striped table-text-color">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>Mailing Address</th>
+                                                              <th>Barguna District Hospital</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Mobile</td>
+                                                              <td>+8801989442856</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Email</td>
+                                                              <td>info@facility.com</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td colspan="2" style="text-align: center;">
+                                                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#facilityContacts">More Detail</button></td>
+                                                            </tr>                                                            
+                                                          </tbody>
+                                                      </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse4">Service Domain <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse4" class="collapse in">
+                                                    <!-- Modal -->
+                                                      <div class="modal fade" id="facilityProvidedServices" role="dialog">
+                                                        <div class="modal-dialog modal-lg modal-text-color">
+                                                        
+                                                          <!-- Modal content-->
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                              <h4 class="modal-title">Facility All Service Domains</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                             <table class="table table-striped modal-text-color">
+                                                              <thead>
+                                                                <tr>
+                                                                  <th>Service Name</th>
+                                                                  <th>Number of Patients</th>
+                                                                </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                                 <tr>
+                                                                  <td>Basic and advanced childbirth</td>
+                                                                  <td>120</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Immunization</td>
+                                                                  <td>120</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Child health</td>
+                                                                  <td>320</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Adolescents</td>
+                                                                  <td>250</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>HIV counseling</td>
+                                                                  <td>210</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>HIV / AIDS care</td>
+                                                                  <td>10</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>ARV therapy</td>
+                                                                  <td>120</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>PMTCT</td>
+                                                                  <td>12</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Treatment of TB</td>
+                                                                  <td>132</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Malaria</td>
+                                                                  <td>33</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Chronicle Disease</td>
+                                                                  <td>23</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Basic surgery</td>
+                                                                  <td>45</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                  <td>Comprehensive surgery</td>
+                                                                  <td>26</td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>Blood transfusion)</td>
+                                                                  <td>67</td>
+                                                                </tr>
+                                                                
+                                                              </tbody>
+                                                          </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                          </div>
+                                                          
+                                                        </div>
+                                                      </div>
+                                                      <div id="ServiceDomain"></div>
+                                                      <table class="table table-striped table-text-color">
+                                                          
+                                                            <tr>
+                                                              <td colspan="2" style="text-align: center;">
+                                                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#facilityProvidedServices">More Detail</button></td>
+                                                            </tr>                                                            
+                                                          </tbody>
+                                                      </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse5">Resource Domain <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse5" class="collapse">
+                                                <!-- Modal -->
+                                                  <div class="modal fade" id="facilityAllResources" role="dialog">
+                                                    <div class="modal-dialog modal-lg modal-text-color">
+                                                    
+                                                      <!-- Modal content-->
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                          <h4 class="modal-title">Facility All Resources</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         <table class="table table-striped modal-text-color">
+                                                           <thead>
+                                                              <tr>
+                                                                <th>Resource type</th>
+                                                                <th>Number</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>
+                                                                <td>Number of doctors</td>
+                                                                <td>10</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Number of Nurses</td>
+                                                                <td>20</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Number of Non-physicians</td>
+                                                                <td>3</td>
+                                                              </tr>
+                                                            <tr>
+                                                              <td>Number of Accountants</td>
+                                                              <td>20</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Number of Store Manager</td>
+                                                              <td>4</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Number of Billing Officer</td>
+                                                              <td>4</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Others</td>
+                                                              <td>10</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                              <td>Number of Male Staff</td>
+                                                              <td>4</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Number of Femele staff</td>
+                                                              <td>4</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Total Number of position</td>
+                                                              <td>10</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Total filled position</td>
+                                                              <td>4</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Total vacant position</td>
+                                                              <td>4</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Vacant in percentage</td>
+                                                              <td>10</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                              <td>Physician filled male</td>
+                                                              <td>4</td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Physician filled female</td>
+                                                              <td>4</td>
+                                                            </tr>
+                                                            
+                                                          </tbody>
+                                                      </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                      </div>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                  <table class="table table-striped table-text-color">
+                                                      <thead>
+                                                        <tr>
+                                                          <th>Number of doctors</th>
+                                                          <th>10</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>Number of Nurses</td>
+                                                          <td>20</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Number of Non-phisicians</td>
+                                                          <td>3</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td colspan="2" style="text-align: center;">
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#facilityAllResources">More Detail</button></td>
+                                                        </tr>                                                            
+                                                      </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse6">Infrastruture Detail <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse6" class="collapse in">
+                                                    <!-- Modal -->
+                                                  <div class="modal fade" id="infrastrutureDetail" role="dialog">
+                                                    <div class="modal-dialog modal-lg modal-text-color">
+                                                    
+                                                      <!-- Modal content-->
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                          <h4 class="modal-title">Facility Infrastruture Information</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         <table class="table table-striped modal-text-color">
+                                                           <thead>
+                                                              <tr>
+                                                                <th>Infrastruture type</th>
+                                                                <th>Detail</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>
+                                                                <td>Condition of building</td>
+                                                                <td>New</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Sanitation facility</td>
+                                                                <td>Average</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Total TT</td>
+                                                                <td>3</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Year of Establishment</td>
+                                                                <td>1998</td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>Sanctioned vehicles</td>
+                                                                <td>322</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Approved bed number</td>
+                                                                <td>500</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Revenue bed number</td>
+                                                                <td>123</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Development bed number</td>
+                                                                <td>198</td>
+                                                              </tr>
+                                                            
+                                                          </tbody>
+                                                      </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                      </div>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                  <table class="table table-striped table-text-color">
+                                                      <thead>
+                                                        <tr>
+                                                          <th>Condition of building</th>
+                                                          <th>New constrution</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>Sanitation facility</td>
+                                                          <td>Average</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Total TT</td>
+                                                          <td>3</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td colspan="2" style="text-align: center;">
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#infrastrutureDetail">More Detail</button></td>
+                                                        </tr>                                                            
+                                                      </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse7">Assets Information <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse7" class="collapse in">
+                                                     <!-- Modal -->
+                                                  <div class="modal fade" id="assetDetail" role="dialog">
+                                                    <div class="modal-dialog modal-lg modal-text-color">
+                                                    
+                                                      <!-- Modal content-->
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                          <h4 class="modal-title">Facility Assets Information</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         <table class="table table-striped modal-text-color">
+                                                           <thead>
+                                                              <tr>
+                                                                <th>Asset Name</th>
+                                                                <th>Quantity</th>
+                                                                <th>Status</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>
+                                                                <td>X - RAY</td>
+                                                                <td>2</td>
+                                                                <td>Good</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Ultra sound unit(general)</td>
+                                                                <td>1</td>
+                                                                <td>Good</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>X-ray viewer(single screen)</td>
+                                                                <td>2</td>
+                                                                <td>In waranty period</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Cassettee pass- box</td>
+                                                                <td>2</td>
+                                                                <td>Good</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Film marker</td>
+                                                                <td>2</td>
+                                                                <td>Good</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>OPG Unit</td>
+                                                                <td>2</td>
+                                                                <td>Good</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Screening unit</td>
+                                                                <td>2</td>
+                                                                <td>Good</td>
+                                                              </tr>
+                                                            
+                                                          </tbody>
+                                                      </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                      </div>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                  <table class="table table-striped table-text-color">
+                                                      <thead>
+                                                        <tr>
+                                                          <th>X - RAY</th>
+                                                          <th>2</th>
+                                                          <th>Good</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>Ultra sound unit(general)</td>
+                                                          <td>1</td>
+                                                          <td>Good</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>X-ray viewer(single screen)</td>
+                                                          <td>2</td>
+                                                          <td>In waranty period</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td colspan="3" style="text-align: center;">
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#assetDetail">More Detail</button></td>
+                                                        </tr>                                                            
+                                                      </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse8">Stock Information <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse8" class="collapse in">
+                                                       <!-- Modal -->
+                                                  <div class="modal fade" id="StockInfo" role="dialog">
+                                                    <div class="modal-dialog modal-lg modal-text-color">
+                                                    
+                                                      <!-- Modal content-->
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                          <h4 class="modal-title">Facility Stock Information</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         <table class="table table-striped modal-text-color">
+                                                           <thead>
+                                                              <tr>
+                                                                <th>Medicine Name</th>
+                                                                <th>Quantity</th>
+                                                                <th>Stock Status</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>
+                                                                <td>Amoxicillin DT-250 mg</td>
+                                                                <td>10000</td>
+                                                                <td>In Stock</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Inj. Gentamicin 20mg/2ml</td>
+                                                                <td>20000</td>
+                                                                <td>In Stock</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Inj. Cephradine 1 gm/vial</td>
+                                                                <td>1222</td>
+                                                                <td>In Stock</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Inj. Metronidazole 500mg/100ml</td>
+                                                                <td>2111</td>
+                                                                <td>In Stock</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Tab. Metronidazole 800 mg</td>
+                                                                <td>20000</td>
+                                                                <td>In Stock</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Inj. Antenatal Corticosteroids/Dexamethsone 5 mg</td>
+                                                                <td>0</td>
+                                                                <td style="color: red;">Stock out</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>ORS Sachet 1/2 Litre</td>
+                                                                <td>122111</td>
+                                                                <td>In Stock</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Zinc 20 mg</td>
+                                                                <td>21772</td>
+                                                                <td>In Stock</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Misoprostol 200 mcg</td>
+                                                                <td>24343</td>
+                                                                <td>In Stock</td>
+                                                              </tr>
+                                                            
+                                                          </tbody>
+                                                      </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                      </div>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                  <table class="table table-striped table-text-color">
+                                                      <thead>
+                                                        <tr>
+                                                          <th>Inj. Ampicillin 500 mg</th>
+                                                          <th>2000</th>
+                                                          <th>In Stock</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>Amoxicillin DT-250 mg</td>
+                                                          <td>10000</td>
+                                                          <td>In Stock</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Inj. Gentamicin 20mg/2ml</td>
+                                                          <td>20000</td>
+                                                          <td>In Stock</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td colspan="3" style="text-align: center;">
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#StockInfo">More Detail</button></td>
+                                                        </tr>                                                            
+                                                      </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse9">Accreditation Information <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse9" class="collapse in">
+                                                        <!-- Modal -->
+                                                  <div class="modal fade" id="AccreditationInfo" role="dialog">
+                                                    <div class="modal-dialog modal-lg modal-text-color">
+                                                    
+                                                      <!-- Modal content-->
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                          <h4 class="modal-title">Facility Accreditation Information</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         <table class="table table-striped modal-text-color">
+                                                           <thead>
+                                                              <tr>
+                                                                <th>Name</th>
+                                                                <th>Status</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>
+                                                                <td>License category</td>
+                                                                <td>Demo License category</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>License Name</td>
+                                                                <td>Demo License name</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>License Renew Type</td>
+                                                                <td>Yearly</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Current Year Renew Status</td>
+                                                                <td>Pending</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>License Number</td>
+                                                                <td>2200-97224-22</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Expired Date</td>
+                                                                <td>2018-12-12</td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>Sanctioned vehicles</td>
+                                                                <td>122</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Catchment</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Disaster Recovery Equipments</td>
+                                                                <td></td>
+                                                              </tr>
+                                                            
+                                                          </tbody>
+                                                      </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                      </div>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                  <table class="table table-striped table-text-color">
+                                                      <thead>
+                                                        <tr>
+                                                          <th>License category</th>
+                                                          <th>Demo License category</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>License Name</td>
+                                                          <td>Demo License name</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>License Renew Type</td>
+                                                          <td>Yearly</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td colspan="2" style="text-align: center;">
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#AccreditationInfo">More Detail</button></td>
+                                                        </tr>                                                            
+                                                      </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse10">Land Information <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse10" class="collapse in">
+                                                        <!-- Modal -->
+                                                  <div class="modal fade" id="landInfo" role="dialog">
+                                                    <div class="modal-dialog modal-lg modal-text-color">
+                                                    
+                                                      <!-- Modal content-->
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                          <h4 class="modal-title">Land Information</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         <table class="table table-striped modal-text-color">
+                                                           <thead>
+                                                              <tr>
+                                                                <th>Information Type</th>
+                                                                <th>Status</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>
+                                                                <td>Land Owner</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Other Information</td>
+                                                                <td></td>
+                                                              </tr>
+                                                            
+                                                          </tbody>
+                                                      </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                      </div>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                  <table class="table table-striped table-text-color">
+                                                      <thead>
+                                                        <tr>
+                                                          <th>Land info</th>
+                                                          <th></th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>Land size decimal</td>
+                                                          <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Land Conditions</td>
+                                                          <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td colspan="2" style="text-align: center;">
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#landInfo">More Detail</button></td>
+                                                        </tr>                                                            
+                                                      </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse11">Available Services <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse11" class="collapse in">
+                                                         <!-- Modal -->
+                                                  <div class="modal fade" id="availableFacilities" role="dialog">
+                                                    <div class="modal-dialog modal-lg modal-text-color">
+                                                    
+                                                      <!-- Modal content-->
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                          <h4 class="modal-title">Avaiable Services</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         <table class="table table-striped modal-text-color">
+                                                           <thead>
+                                                            <tr>
+                                                              <th>Service Name</th>
+                                                              <th>Source</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Main Electricity Source</td>
+                                                              <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Alternative Electricity Source</td>
+                                                              <td></td>
+                                                            </tr>
+                                                              <tr>
+                                                                <td>Main Water Source Name</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Alternative Water Source</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Toilet option</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Fuel source option name</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Laundry system option</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Auto Clave system</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Waste dispose option</td>
+                                                                <td></td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>Is OT?</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Is pharmacy?</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Is pathology?</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Is emergency department?</td>
+                                                                <td></td>
+                                                              </tr>
+
+                                                              <tr>
+                                                                <td>Is opd?</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Is ipd?</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Is ambulance?</td>
+                                                                <td></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Other available special services</td>
+                                                                <td></td>
+                                                              </tr>
+                                                          </tbody>
+                                                      </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                      </div>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                  <table class="table table-striped table-text-color">
+                                                      <thead>
+                                                        <tr>
+                                                          <th>Service Name</th>
+                                                          <th>Source</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>Main Electricity Source</td>
+                                                          <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Alternative Electricity Source</td>
+                                                          <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td colspan="2" style="text-align: center;">
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#availableFacilities">More Detail</button></td>
+                                                        </tr>                                                            
+                                                      </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse12">Historical Background <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse12" class="collapse in">
+                                                    <p class="body-content">
+                                                        <span>Coming soon.........</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <a class="widther-header" data-toggle="collapse" data-target="#collapse13">Client Feedback <i class="fa fa-caret-down down" aria-hidden="true"></i></a>
+                                                <div class="widget-body" id="collapse13" class="collapse in">
+                                                    <p class="body-content">
+                                                        <span>Coming soon.........</span>
+                                                    </p>
+                                                </div>
+                                            </div>                                 
+                                      </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['childbirth', 12],
+  ['Immunization', 8],
+  ['Child health', 2],
+  ['Adolescents', 4],
+  ['HIV counseling', 2],
+  ['ARV therapy', 8]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Facility Service Domains Ratio', 'width':380, 'height':250};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('ServiceDomain'));
+  chart.draw(data, options);
+}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8UOADXQH40WXfIdso7BqDVfbLYxFAw2k&callback=initMap" type="text/javascript"></script>
+</body>
+</html>
